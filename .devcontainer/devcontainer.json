@@ -1,0 +1,16 @@
+{
+	"name": "moon-apps",
+	"dockerComposeFile": "./docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/home/node/moon-apps",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"eamodio.gitlens",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"postCreateCommand": "git config --global core.editor /usr/bin/vim && git config --global --add safe.directory /home/node/moon-apps"
+}

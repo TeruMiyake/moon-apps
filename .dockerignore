@@ -1,0 +1,11 @@
+# .dockerignore は .devcontainer ディレクトリではなく、docker-compose.yml で定めるビルドコンテキストに置く
+
+# .dockerignore が影響を及ぼすのは主にDockerイメージのビルドプロセスであって、Dockerの挙動全般ではなさそう
+# つまり、バインドマウントしたディレクトリは .dockerignore の内容に関わらず同期される
+
+
+# Git関連のファイル
+.git/
+
+# 開発用の設定ファイル
+.vscode/

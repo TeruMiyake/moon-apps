@@ -12,5 +12,5 @@
 			]
 		}
 	},
-	"postCreateCommand": "git config --global core.editor /usr/bin/vim && git config --global --add safe.directory /home/node/moon-apps"
+	"postCreateCommand": "git config --global core.editor /usr/bin/vim && git config --global --add safe.directory /home/node/moon-apps && git config commit.template .git_commit_template"
 }

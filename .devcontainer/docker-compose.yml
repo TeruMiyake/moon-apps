@@ -29,7 +29,9 @@ services:
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
-      - ./mariadb_storage:/var/lib/mysql
+      - ../mariadb/storage:/var/lib/mysql # データベースデータ
+      - ../mariadb/config:/etc/mysql # 設定ファイル
+      - ../mariadb/logs:/var/log/mysql # ログファイル
     ports:
       - "3306:3306"
 

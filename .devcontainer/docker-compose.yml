@@ -25,11 +25,14 @@ services:
   mariadb:
     image: mariadb:lts-jammy
     environment:
+      # mariadb はこれらの環境変数を参照して初期設定を行う
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
-      - ./mariadb_storage:/var/lib/mysql
+      - ../mariadb/storage:/var/lib/mysql # データベースデータ
+      - ../mariadb/config:/etc/mysql # 設定ファイル
+      - ../mariadb/logs:/var/log/mysql # ログファイル
     ports:
       - "3306:3306"
 

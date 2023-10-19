@@ -25,6 +25,7 @@ services:
   mariadb:
     image: mariadb:lts-jammy
     environment:
+      # mariadb はこれらの環境変数を参照して初期設定を行う
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}

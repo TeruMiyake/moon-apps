@@ -6,6 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model ItemRank {
+  id        Int      @id @default(autoincrement())
+  name      String
+  items     Item[]
+}
+
+model Item {
+  id        Int      @id @default(autoincrement())
+  name      String
+  rank      ItemRank @relation(fields: [rankId], references: [id])
+  rankId    Int
 }

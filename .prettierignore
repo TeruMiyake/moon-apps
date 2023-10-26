@@ -1,6 +1,7 @@
 *.ico
 .github
 .devcontainer
+.husky
 
 ### Manually copied from .gitignore ##
 

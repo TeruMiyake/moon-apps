@@ -1,4 +1,6 @@
 *.ico
+.github
+.devcontainer
 
 ### Manually copied from .gitignore ##
 

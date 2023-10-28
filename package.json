@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "fmt": "prettier . '!./mariadb' --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "fix:lint": "next lint --fix"
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",

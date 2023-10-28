@@ -41,7 +41,7 @@ model Item {
 }
 
 // アイテム合成結果の種類
-// 失敗, 成功, 大成功, 超大成功
+// 1: 失敗, 2: 成功, 3: 大成功, 4: 超大成功
 model UpgradeResultType {
   id       Int       @id @default(autoincrement())
   name     String
@@ -54,9 +54,9 @@ model UpgradeResultType {
 // 　逆は大きな問題にはならないため）
 model Upgrade {
   id            Int               @id @default(autoincrement())
-  name          String
   originalLevel Int // 合成前のレベル
-  triedAt       DateTime          @default(now())
+  triedAt       DateTime          @default(now()) // ただし時刻はアプリケーションロジックで無視する
+  registeredAt  DateTime          @default(now()) // データが入力された日時
   rank          ItemRank          @relation(fields: [rankId], references: [id])
   rankId        Int
   resultType    UpgradeResultType @relation(fields: [resultTypeId], references: [id])

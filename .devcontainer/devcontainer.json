@@ -10,7 +10,8 @@
 				"eamodio.gitlens",
 				"ms-azuretools.vscode-docker",
 				"esbenp.prettier-vscode",
-				"bradlc.vscode-tailwindcss"
+				"bradlc.vscode-tailwindcss",
+				"prisma.prisma"
 			]
 		}
 	},

@@ -53,11 +53,12 @@ model UpgradeResultType {
 // （途中で仕様が変更された場合などに、古い結果が新しい日時で入力されていると攪乱要素になるが、
 // 　逆は大きな問題にはならないため）
 model Upgrade {
-  id           Int               @id @default(autoincrement())
-  name         String
-  triedAt      DateTime          @default(now())
-  rank         ItemRank          @relation(fields: [rankId], references: [id])
-  rankId       Int
-  resultType   UpgradeResultType @relation(fields: [resultTypeId], references: [id])
-  resultTypeId Int
+  id            Int               @id @default(autoincrement())
+  name          String
+  originalLevel Int // 合成前のレベル
+  triedAt       DateTime          @default(now())
+  rank          ItemRank          @relation(fields: [rankId], references: [id])
+  rankId        Int
+  resultType    UpgradeResultType @relation(fields: [resultTypeId], references: [id])
+  resultTypeId  Int
 }

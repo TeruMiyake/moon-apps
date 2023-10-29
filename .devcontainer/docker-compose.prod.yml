@@ -4,18 +4,20 @@ services:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile.prod
+    container_name: moon-apps-app
     depends_on:
       - mariadb
-    command: [ "npm", "run", "start" ]
+    command: [ "/bin/bash", "-c", "exec /bin/bash" ]
     tty: true
     volumes:
       - ..:/home/node/moon-apps
     ports:
-      - "3300:3300"
+      - "3300:3000"
     restart: unless-stopped
 
   mariadb:
     image: mariadb:lts-jammy
+    container_name: moon-apps-mariadb
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_USER: ${MARIADB_USER}

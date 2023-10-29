@@ -137,7 +137,7 @@ export default function UpgradeInput({
         </div>
 
         {/* 結果選択＆登録ボタン */}
-        <div className="mt-8 space-x-3">
+        <div className="mt-6 flex flex-wrap">
           {resultTypes.map((type) => (
             <button
               key={type.id}
@@ -145,7 +145,7 @@ export default function UpgradeInput({
               onClick={() => {
                 handleSubmit(type.id);
               }}
-              className="rounded bg-blue-400 p-2 text-white"
+              className="m-2 w-1/3 rounded bg-blue-400 p-3 text-white"
             >
               {type.name}
             </button>

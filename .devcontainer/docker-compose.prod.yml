@@ -1,0 +1,42 @@
+version: "3"
+services:
+  app:
+    # ビルドコンテキストは親ディレクトリとする
+    ## ビルドコンテキストが変わると Dockerfileにおける COPY, ADD コマンドや.dockerignoreファイルにおけるディレクトリ指定が変わる
+    ## .dockerignore はビルドコンテキストに置く必要があることに注意
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile.prod
+    # run -dit /bin/bash に当たるcommand記述  
+    ## bashを対話モードで起動したままにしておく
+    # docker-compose.yml の entrypoint, command はそれぞれ Dockerfile の ENTRYPOINT, CMD に対応する
+    command: [ "npm", "run", "start" ]
+    # run -dit /bin/bash の -t に当たる部分
+    tty: true
+
+    # ストレージマウント
+    # ホスト側のディレクトリをコンテナ側のディレクトリにマウントする
+    ## volumes というプロパティ名だが、必ずしもボリュームマウントではない
+    volumes:
+      # `:` を使うとバインドマウントとなる
+      # docker-compose.yml内では、ホスト側のURLはビルドコンテキストではなくdocker-compose.ymlがある場所が基準となる
+      - ..:/home/node/moon-apps
+
+  mariadb:
+    image: mariadb:lts-jammy
+    environment:
+      # mariadb はこれらの環境変数を参照して初期設定を行う
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - ../mariadb/storage:/var/lib/mysql # データベースデータ
+      - ../mariadb/config:/etc/mysql # 設定ファイル
+      - ../mariadb/logs:/var/log/mysql # ログファイル
+    ports:
+      - "3306:3306"
+
+# ブリッジモードでネットワークを作成
+networks:
+  default:
+    driver: bridge

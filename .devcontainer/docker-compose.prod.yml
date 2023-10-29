@@ -21,7 +21,9 @@ services:
     volumes:
       - ../mariadb/storage:/var/lib/mysql
       - ../mariadb/config:/etc/mysql
-      - ../mariadb/logs:/var/log/mysql
+      - ../mariadb/logs:/var/log/mysqlvolumes:
+      - ./prod_init.sql:/docker-entrypoint-initdb.d/init.sql
+
     ports:
       - "3306:3306"
     restart: unless-stopped

@@ -10,4 +10,6 @@ USER node
 RUN mkdir -p /home/node/moon-apps
 WORKDIR /home/node/moon-apps
 
-RUN npm install && npm run build
+COPY . .
+
+RUN npm install && npx prisma migrate deploy && npm run build

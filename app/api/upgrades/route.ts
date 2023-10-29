@@ -3,6 +3,7 @@
  *
  * GET: すべての合成結果を取得（今は最新 50 件にしている, includedUpgrade[] を返す）
  * POST: 合成結果を登録: 単純に Upgrade をそのまま受け取る
+ * DELETE: 合成結果を削除: Upgrade の ID を受け取る: { id: number }
  */
 import {
   Upgrade,
@@ -69,6 +70,37 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: "Unable to create upgrade" }), {
+      status: 500,
+      headers,
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+export async function DELETE(req: Request) {
+  console.log(`DELETE /api/upgrade called. req: ${req}`);
+  try {
+    const body = await req.json();
+    console.log(`req.json(): ${JSON.stringify(body)}`);
+
+    if (body === undefined || body.id === undefined) {
+      return new Response(
+        JSON.stringify({ error: "ID is required to delete upgrade" }),
+        { status: 400, headers },
+      );
+    }
+
+    const upgrade: Upgrade = await prisma.upgrade.delete({
+      where: {
+        id: body.id,
+      },
+    });
+
+    return new Response(JSON.stringify(upgrade), { status: 200, headers });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: "Unable to delete upgrade" }), {
       status: 500,
       headers,
     });

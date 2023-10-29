@@ -21,7 +21,8 @@ export default function UpgradeInput({
 
   const [originalLevel, setOriginalLevel] = useState(0);
   const [triedAt, setTriedAt] = useState(new Date());
-  const [rankId, setRankId] = useState(0);
+  // rankId: 1 ~ 7
+  const [rankId, setRankId] = useState(1);
 
   // Date 型を使いつつもフォームでは日付しか扱わないことにするため、
   // フォーム上では "YYYY-MM-DD" 形式の文字列 triedAtStr として扱う

@@ -23,6 +23,7 @@ services:
       - ..:/home/node/moon-apps
     ports:
       - "3300:3300"
+    restart: unless-stopped
 
   mariadb:
     image: mariadb:lts-jammy
@@ -37,6 +38,7 @@ services:
       - ../mariadb/logs:/var/log/mysql # ログファイル
     ports:
       - "3306:3306"
+    restart: unless-stopped
 
 # ブリッジモードでネットワークを作成
 networks:

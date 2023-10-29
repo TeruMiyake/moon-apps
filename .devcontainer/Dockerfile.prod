@@ -5,11 +5,14 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-USER node
-
 RUN mkdir -p /home/node/moon-apps
 WORKDIR /home/node/moon-apps
 
+COPY package*.json ./
+
+RUN npm install
+
 COPY . .
 
-RUN npm install && npx prisma migrate deploy && npm run build
+RUN npx prisma migrate deploy
+RUN npm run build

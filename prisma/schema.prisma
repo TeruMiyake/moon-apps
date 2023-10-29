@@ -10,15 +10,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ========= アイテム関連 ====================================
+
+// アイテムのランク 
+// F, E, D, C, B, A, S
 model ItemRank {
-  id        Int      @id @default(autoincrement())
-  name      String
-  items     Item[]
+  id       Int       @id @default(autoincrement())
+  name     String
+  items    Item[]
+  upgrades Upgrade[]
 }
 
+// アイテムのタイプ
+// 武器, 防具, 足具, アクセサリー, アイテム
+model ItemType {
+  id         Int     @id @default(autoincrement())
+  equippable Boolean
+  name       String
+  items      Item[]
+}
+
+// アイテム（実際の所持アイテムではなく、システム上のアイテム種類を表す）
 model Item {
-  id        Int      @id @default(autoincrement())
-  name      String
-  rank      ItemRank @relation(fields: [rankId], references: [id])
-  rankId    Int
+  id     Int      @id @default(autoincrement())
+  name   String
+  rank   ItemRank @relation(fields: [rankId], references: [id])
+  rankId Int
+  type   ItemType @relation(fields: [typeId], references: [id])
+  typeId Int
+}
+
+// アイテム合成結果の種類
+// 1: 失敗, 2: 成功, 3: 大成功, 4: 超大成功
+model UpgradeResultType {
+  id       Int       @id @default(autoincrement())
+  name     String
+  upgrades Upgrade[]
+}
+
+// アイテム合成結果
+// 日時不明の場合、古めの日時を入れさせる運用とする
+// （途中で仕様が変更された場合などに、古い結果が新しい日時で入力されていると攪乱要素になるが、
+// 　逆は大きな問題にはならないため）
+model Upgrade {
+  id            Int               @id @default(autoincrement())
+  originalLevel Int // 合成前のレベル
+  triedAt       DateTime          @default(now()) // ただし時刻はアプリケーションロジックで無視する
+  registeredAt  DateTime          @default(now()) // データが入力された日時
+  rank          ItemRank          @relation(fields: [rankId], references: [id])
+  rankId        Int
+  resultType    UpgradeResultType @relation(fields: [resultTypeId], references: [id])
+  resultTypeId  Int
 }

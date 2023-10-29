@@ -1,7 +1,7 @@
 /**
  * /api/upgrades/stats
  *
- * GET: 合成結果の統計情報を取得。返り値は UpgradeStatsPerRank[]。
+ * GET: 合成結果の統計情報を取得。返り値は UpgradeStatsPerRank[]。0回の組み合わせはデータに含まれないので例外処理に注意。
  */
 
 import {

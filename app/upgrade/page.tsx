@@ -36,6 +36,8 @@ export default async function Home() {
   const resultTypes: UpgradeResultType[] =
     await prisma.upgradeResultType.findMany();
 
+  prisma.$disconnect();
+
   return (
     <main className="bg-gray-100 p-8">
       <h1 className="mb-4 text-4xl font-bold">合成結果入力</h1>

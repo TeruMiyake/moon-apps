@@ -4,6 +4,8 @@ services:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile.prod
+    depends_on:
+      - mariadb
     command: [ "npm", "run", "start" ]
     tty: true
     volumes:

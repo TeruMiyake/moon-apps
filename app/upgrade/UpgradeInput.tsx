@@ -22,16 +22,15 @@ export default function UpgradeInput({
   const [originalLevel, setOriginalLevel] = useState(0);
   const [triedAt, setTriedAt] = useState(new Date());
   const [rankId, setRankId] = useState(0);
-  const [resultTypeId, setResultTypeId] = useState(0);
 
   // Date 型を使いつつもフォームでは日付しか扱わないことにするため、
   // フォーム上では "YYYY-MM-DD" 形式の文字列 triedAtStr として扱う
   // 送信時には triedAtStr を Date 型に変換する
   const triedAtStr = triedAt.toISOString().split("T")[0];
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  // 合成結果の登録ボタンが押された場合の処理
+  // resultTypeId は登録ボタンの種類によって異なる
+  const handleSubmit = async (resultTypeId: number) => {
     const body = {
       originalLevel,
       triedAt,
@@ -73,66 +72,84 @@ export default function UpgradeInput({
   };
 
   return (
-    <div>
-      <h2 className="mb-2 text-2xl font-semibold">合成結果入力フォーム</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Original Level */}
-        <div>
-          <label htmlFor="originalLevel">Original Level:</label>
-          <select
-            id="originalLevel"
-            value={originalLevel}
-            onChange={(e) => setOriginalLevel(Number(e.target.value))}
-          >
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => (
-              <option key={level} value={level}>
-                {level}
-              </option>
-            ))}
-          </select>
+    <div className="mb-8 max-w-sm rounded-lg bg-gray-100 p-6">
+      <h2 className="mb-4 text-2xl font-semibold text-gray-600">
+        合成結果入力フォーム
+      </h2>
+      <form>
+        {/* Rank and Original Level */}
+        <div className="mb-4 flex space-x-4">
+          {/* Rank */}
+          <div className="mr-10">
+            <label htmlFor="rankId" className="block text-gray-700">
+              装備ランク:
+            </label>
+            <select
+              id="rankId"
+              value={rankId}
+              onChange={(e) => setRankId(Number(e.target.value))}
+              className="rounded bg-blue-200 p-2"
+            >
+              {ranks.map((rank) => (
+                <option key={rank.id} value={rank.id}>
+                  {rank.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* Original Level */}
+          <div>
+            <label htmlFor="originalLevel" className="block text-gray-700">
+              合成
+              <u>
+                <b>前</b>
+              </u>
+              の+値:
+            </label>
+            <select
+              id="originalLevel"
+              value={originalLevel}
+              onChange={(e) => setOriginalLevel(Number(e.target.value))}
+              className="rounded bg-blue-200 p-2"
+            >
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Tried At */}
-        <div>
-          <label htmlFor="triedAt">Tried At:</label>
+        <div className="mb-4">
+          <label htmlFor="triedAt" className="block text-gray-700">
+            合成した日付:
+          </label>
           <input
             type="date"
             id="triedAt"
             value={triedAtStr}
             onChange={handleChangeDate}
+            className="rounded bg-blue-200 p-2"
           />
         </div>
 
-        {/* Rank */}
-        <div>
-          <label htmlFor="rankId">Rank:</label>
-          <select
-            id="rankId"
-            value={rankId}
-            onChange={(e) => setRankId(Number(e.target.value))}
-          >
-            {ranks.map((rank) => (
-              <option key={rank.id} value={rank.id}>
-                {rank.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Result Type */}
-        <div>
+        {/* 結果選択＆登録ボタン */}
+        <div className="mt-8 space-x-3">
           {resultTypes.map((type) => (
             <button
               key={type.id}
               type="button"
-              onClick={() => setResultTypeId(type.id)}
+              onClick={() => {
+                handleSubmit(type.id);
+              }}
+              className="rounded bg-blue-400 p-2 text-white"
             >
               {type.name}
             </button>
           ))}
         </div>
-
-        <button type="submit">Submit</button>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import {
   ItemRank,
   UpgradeResultType,
 } from "@prisma/client";
+import UpgradeDeleteButton from "@/app/upgrade/UpgradeDeleteButton";
 
 const prisma = new PrismaClient();
 
@@ -43,13 +44,14 @@ export default async function RecentUpgrades() {
   const upgrades: IncludedUpgrade[] = await prisma.upgrade.findMany({
     take: 20,
     orderBy: {
-      triedAt: "desc",
+      registeredAt: "desc",
     },
     include: {
       rank: true,
       resultType: true,
     },
   });
+
   return (
     <div className="max-w-2xl rounded bg-gray-100 p-4">
       <h2 className="mb-4 text-2xl font-semibold text-gray-600">
@@ -82,9 +84,7 @@ export default async function RecentUpgrades() {
               <td className="border-b px-4 py-2">{`+${upgrade.originalLevel}`}</td>
               <td className="border-b px-4 py-2">{upgrade.resultType.name}</td>
               <td className="border-b px-4 py-2">
-                <button className="rounded bg-red-500 px-4 py-2 text-white">
-                  削除
-                </button>
+                <UpgradeDeleteButton id={upgrade.id} />
               </td>
             </tr>
           ))}

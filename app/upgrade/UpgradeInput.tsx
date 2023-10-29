@@ -4,6 +4,7 @@
 "use client";
 
 import { ItemRank, UpgradeResultType } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export interface UpgradeInputProps {
@@ -15,6 +16,9 @@ export default function UpgradeInput({
   ranks,
   resultTypes,
 }: UpgradeInputProps) {
+  // 新規登録時にページを refresh するために router を使う
+  const router = useRouter();
+
   const [originalLevel, setOriginalLevel] = useState(0);
   const [triedAt, setTriedAt] = useState(new Date());
   const [rankId, setRankId] = useState(0);
@@ -53,6 +57,8 @@ export default function UpgradeInput({
     } catch (error) {
       console.error("An error occurred:", error);
     }
+
+    router.refresh();
   };
 
   // 上述のとおり、フォーム送信時に triedAtStr を Date 型に変換する

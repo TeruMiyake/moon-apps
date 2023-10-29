@@ -1,25 +1,39 @@
 /**
  * /api/upgrade
  *
- * GET: すべての合成結果を取得（今は最新 50 件にしている）
+ * GET: すべての合成結果を取得（今は最新 50 件にしている, includedUpgrade[] を返す）
  * POST: 合成結果を登録: 単純に Upgrade をそのまま受け取る
  */
-import { Upgrade, PrismaClient } from "@prisma/client";
+import {
+  Upgrade,
+  PrismaClient,
+  ItemRank,
+  UpgradeResultType,
+} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const headers = { "content-type": "application/json;charset=UTF-8" };
 
+export type IncludedUpgrade = Upgrade & {
+  rank: ItemRank;
+  resultType: UpgradeResultType;
+};
+
 export async function GET(req: Request) {
   console.log(`GET /api/upgrade called. req: ${req}`);
   try {
-    const upgrades: Upgrade[] = await prisma.upgrade.findMany(
+    const upgrades: IncludedUpgrade[] = await prisma.upgrade.findMany(
       // 登録された日時が新しい順に 50 件まで取得
       {
         orderBy: {
           registeredAt: "desc",
         },
         take: 50,
+        include: {
+          rank: true,
+          resultType: true,
+        },
       },
     );
 

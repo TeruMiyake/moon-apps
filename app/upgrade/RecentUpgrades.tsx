@@ -1,14 +1,26 @@
 /**
  * 最近登録された合成結果を表示するコンポーネント
  */
-import { PrismaClient } from "@prisma/client";
+import {
+  PrismaClient,
+  Upgrade,
+  ItemRank,
+  UpgradeResultType,
+} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function RecentUpdates() {
-  const upgrades = await prisma.upgrade.findMany({
-    orderBy: { registeredAt: "desc" },
+export type IncludedUpgrade = Upgrade & {
+  rank: ItemRank;
+  resultType: UpgradeResultType;
+};
+
+export default async function RecentUpgrades() {
+  const upgrades: IncludedUpgrade[] = await prisma.upgrade.findMany({
     take: 20,
+    orderBy: {
+      triedAt: "desc",
+    },
     include: {
       rank: true,
       resultType: true,

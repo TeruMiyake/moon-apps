@@ -210,16 +210,16 @@ export default async function UpgradeStats() {
 
                     return (
                       <>
-                        <td
-                          className={`border px-4 py-2 ${bgColorClass}`}
-                        >
+                        <td className={`border px-4 py-2 ${bgColorClass}`}>
                           {count.upgradeResultTypeName}
                         </td>
                         <td className={`border px-4 py-2 ${bgColorClass}`}>
                           {count.count}
                         </td>
                         <td className={`border px-4 py-2 ${bgColorClass}`}>
-                          {count.rate}
+                          {Number.isInteger(count.rate)
+                            ? count.rate
+                            : count.rate.toFixed(2)}
                         </td>
                       </>
                     );

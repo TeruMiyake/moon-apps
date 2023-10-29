@@ -21,6 +21,8 @@ services:
       # `:` を使うとバインドマウントとなる
       # docker-compose.yml内では、ホスト側のURLはビルドコンテキストではなくdocker-compose.ymlがある場所が基準となる
       - ..:/home/node/moon-apps
+    ports:
+      - "3300:3300"
 
   mariadb:
     image: mariadb:lts-jammy

@@ -4,39 +4,20 @@
  * 合成結果の統計入力・表示を行うアプリのトップ画面
  */
 
-import {
-  PrismaClient,
-  Item,
-  ItemRank,
-  ItemType,
-  UpgradeResultType,
-} from "@prisma/client";
+import { PrismaClient, ItemRank, UpgradeResultType } from "@prisma/client";
 
 import UpgradeInput from "@/app/upgrade/UpgradeInput";
 import RecentUpgrades from "@/app/upgrade/RecentUpgrades";
+import UpgradeStats from "@/app/upgrade/UpgradeStats";
 
 const prisma = new PrismaClient();
 
-type IncludedItem = Item & {
-  rank: ItemRank;
-  type: ItemType;
-};
-
 export default async function Home() {
-  // アイテム一覧用
-  // TODO: このページには不要なので、削除予定
-  const items: IncludedItem[] = await prisma.item.findMany({
-    include: {
-      rank: true,
-      type: true,
-    },
-  });
-
   const ranks: ItemRank[] = await prisma.itemRank.findMany();
   const resultTypes: UpgradeResultType[] =
     await prisma.upgradeResultType.findMany();
 
-  prisma.$disconnect();
+  await prisma.$disconnect();
 
   return (
     <main className="bg-gray-100 p-8">
@@ -48,16 +29,8 @@ export default async function Home() {
         {/* 合成結果表示 */}
         <RecentUpgrades />
 
-        {/* アイテム一覧表示 */}
-        <h2 className="mb-2 text-2xl font-semibold">アイテム一覧</h2>
-        <ul className="list-inside list-disc">
-          {items.map((item) => (
-            <li key={item.id} className="mb-1">
-              {item.name}: ランク {item.rank.name}, 種別 {item.type.name}（
-              {item.type.equippable ? "装備可" : "装備不可"}）
-            </li>
-          ))}
-        </ul>
+        {/* 合成結果統計表示 */}
+        <UpgradeStats />
       </div>
     </main>
   );

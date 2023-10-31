@@ -10,6 +10,11 @@ import UpgradeInput from "@/app/upgrade/UpgradeInput";
 import RecentUpgrades from "@/app/upgrade/RecentUpgrades";
 import UpgradeStats from "@/app/upgrade/UpgradeStats";
 
+// Route Segment Config
+// Page, Layout, Route Handlers に設定可能, Component には不可
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+export const dynamic = "force-dynamic";
+
 const prisma = new PrismaClient();
 
 export default async function Home() {

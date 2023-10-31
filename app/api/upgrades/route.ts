@@ -12,6 +12,10 @@ import {
   UpgradeResultType,
 } from "@prisma/client";
 
+// Route Segment Config
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+export const revalidate = 30; // seconds
+
 const prisma = new PrismaClient();
 
 const headers = { "content-type": "application/json;charset=UTF-8" };

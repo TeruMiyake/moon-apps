@@ -137,7 +137,7 @@ export default function UpgradeInput({
         </div>
 
         {/* 結果選択＆登録ボタン */}
-        <div className="mt-6 flex flex-wrap">
+        <div className="mt-5 flex flex-wrap">
           {resultTypes.map((type) => (
             <button
               key={type.id}

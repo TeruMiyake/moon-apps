@@ -9,6 +9,12 @@ import { PrismaClient, ItemRank, UpgradeResultType } from "@prisma/client";
 import UpgradeInput from "@/app/upgrade/UpgradeInput";
 import RecentUpgrades from "@/app/upgrade/RecentUpgrades";
 import UpgradeStats from "@/app/upgrade/UpgradeStats";
+import TogglableNote from "./TogglableNote";
+
+// Route Segment Config
+// Page, Layout, Route Handlers に設定可能, Component には不可
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+export const dynamic = "force-dynamic";
 
 const prisma = new PrismaClient();
 
@@ -23,6 +29,9 @@ export default async function Home() {
     <main className="bg-gray-100 p-8">
       <h1 className="mb-4 text-4xl font-bold">合成結果入力</h1>
       <div className="rounded-lg bg-white p-6 shadow-lg">
+        {/* 注意書き */}
+        <TogglableNote />
+
         {/* 合成結果入力フォーム */}
         <UpgradeInput ranks={ranks} resultTypes={resultTypes} />
 

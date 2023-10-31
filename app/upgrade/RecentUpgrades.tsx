@@ -68,7 +68,7 @@ export default async function RecentUpgrades() {
               <th className="border-b px-4 py-2">登録日</th>
               <th className="border-b px-4 py-2">合成日</th>
               <th className="border-b px-4 py-2">ランク</th>
-              <th className="border-b px-4 py-2">元の強化値</th>
+              <th className="border-b px-4 py-2">合成前</th>
               <th className="border-b px-4 py-2">結果</th>
               <th className="border-b px-4 py-2">操作</th>
             </tr>

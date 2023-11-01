@@ -73,10 +73,7 @@ export default function UpgradeInput({
   };
 
   return (
-    <div className="mb-6 max-w-sm rounded-lg bg-gray-100 p-6">
-      <h2 className="mb-4 text-2xl font-semibold text-gray-600">
-        合成結果入力フォーム
-      </h2>
+    <div className="mb-6 max-w-xs rounded-lg bg-gray-100 p-6 pl-14">
       <form>
         {/* Rank and Original Level */}
         <div className="mb-4 flex space-x-4">

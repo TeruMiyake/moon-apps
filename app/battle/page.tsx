@@ -3,6 +3,8 @@
  *
  * 戦闘結果の抽出・解析を行う画面
  */
+import { Container } from "@/components/Container";
+import { FadeIn } from "@/components/FadeIn";
 
 import BattleAnalysis from "@/app/battle/BattleAnalysis";
 
@@ -13,12 +15,14 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   return (
-    <main className="bg-gray-100 p-8">
-      <h1 className="mb-4 text-4xl font-bold">戦闘結果分析</h1>
-      <div className="rounded-lg bg-white p-6 shadow-lg">
-        {/* 分析画面 */}
-        <BattleAnalysis />
-      </div>
-    </main>
+    <Container className="mt-24 sm:mt-32 lg:mt-40">
+      <FadeIn>
+        <h1 className="mb-4 text-4xl font-bold">戦闘ログ解析</h1>
+        <div className="rounded-lg bg-white p-6 shadow-lg">
+          {/* 分析画面 */}
+          <BattleAnalysis />
+        </div>
+      </FadeIn>
+    </Container>
   );
 }

@@ -9,7 +9,6 @@ import { ContactSection } from "@/components/ContactSection";
 import { Container } from "@/components/Container";
 import { FadeIn, FadeInStagger } from "@/components/FadeIn";
 import { PageIntro } from "@/components/PageIntro";
-import { Testimonial } from "@/components/Testimonial";
 import logoBrightPath from "@/images/clients/bright-path/logo-dark.svg";
 import logoFamilyFund from "@/images/clients/family-fund/logo-dark.svg";
 import logoGreenLife from "@/images/clients/green-life/logo-dark.svg";
@@ -159,14 +158,6 @@ export default async function Work() {
       </PageIntro>
 
       <CaseStudies caseStudies={caseStudies} />
-
-      <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: "Mail Smirk", logo: logoMailSmirk }}
-      >
-        We approached <em>Studio</em> because we loved their past work. They
-        delivered something remarkably similar in record time.
-      </Testimonial>
 
       <Clients />
 

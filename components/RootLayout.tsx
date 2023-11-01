@@ -17,9 +17,9 @@ import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Footer } from "@/components/Footer";
 import { GridPattern } from "@/components/GridPattern";
-import { Logo, Logomark } from "@/components/Logo";
-import { Offices } from "@/components/Offices";
-import { SocialMedia } from "@/components/SocialMedia";
+// import { Logo, Logomark } from "@/components/Logo";
+// import { Offices } from "@/components/Offices";
+// import { SocialMedia } from "@/components/SocialMedia";
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean;
@@ -58,7 +58,8 @@ function Header({
   toggleRef: React.RefObject<HTMLButtonElement>;
   invert?: boolean;
 }) {
-  const { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!;
+  // const { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!;
+  const { setLogoHovered } = useContext(RootLayoutContext)!;
 
   return (
     <Container>
@@ -69,7 +70,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Logomark
+          {/* <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
@@ -78,11 +79,12 @@ function Header({
             className="hidden h-8 sm:block"
             invert={invert}
             filled={logoHovered}
-          />
+          /> */}
+          <p>しろい月の国 工作室</p>
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
-            Contact us
+          <Button href="https://games-alchemist.com/" invert={invert}>
+            あるけみ公式
           </Button>
           <button
             ref={toggleRef}
@@ -143,13 +145,17 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
+        <NavigationItem href="/upgrade">合成結果入力</NavigationItem>
+        <NavigationItem href="/battle">戦闘ログ解析</NavigationItem>
+      </NavigationRow>
+      {/* <NavigationRow>
         <NavigationItem href="/work">Our Work</NavigationItem>
         <NavigationItem href="/about">About Us</NavigationItem>
       </NavigationRow>
       <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
         <NavigationItem href="/blog">Blog</NavigationItem>
-      </NavigationRow>
+      </NavigationRow> */}
     </nav>
   );
 }
@@ -230,27 +236,6 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
               />
             </div>
             <Navigation />
-            <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
-              <Container>
-                <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
-                  <div>
-                    <h2 className="font-display text-base font-semibold text-white">
-                      Our offices
-                    </h2>
-                    <Offices
-                      invert
-                      className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
-                    />
-                  </div>
-                  <div className="sm:border-l sm:border-transparent sm:pl-16">
-                    <h2 className="font-display text-base font-semibold text-white">
-                      Follow us
-                    </h2>
-                    <SocialMedia className="mt-6" invert />
-                  </div>
-                </div>
-              </Container>
-            </div>
           </motion.div>
         </motion.div>
       </header>

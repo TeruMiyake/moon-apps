@@ -55,7 +55,7 @@ export default async function RecentUpgrades() {
   await prisma.$disconnect();
 
   return (
-    <div className="mb-6 max-w-3xl rounded bg-gray-100 p-4">
+    <div className="mb-6 max-w-3xl rounded p-4">
       <h2 className="mb-4 text-2xl font-semibold text-gray-600">
         最近登録された合成結果
       </h2>

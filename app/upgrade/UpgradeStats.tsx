@@ -149,7 +149,10 @@ export default async function UpgradeStats() {
   stats.sort((a, b) => a.itemRank.itemRankId - b.itemRank.itemRankId);
 
   return (
-    <div className="mb-6 max-w-3xl">
+    <div className="mb-6 max-w-3xl rounded p-4">
+      <h2 className="mb-4 text-2xl font-semibold text-gray-600">
+        合成結果の集計
+      </h2>
       <table className="min-w-full border border-gray-300 bg-white">
         <thead>
           <tr>

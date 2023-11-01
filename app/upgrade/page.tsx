@@ -9,7 +9,7 @@ import { PrismaClient, ItemRank, UpgradeResultType } from "@prisma/client";
 import UpgradeInput from "@/app/upgrade/UpgradeInput";
 import RecentUpgrades from "@/app/upgrade/RecentUpgrades";
 import UpgradeStats from "@/app/upgrade/UpgradeStats";
-import TogglableNote from "./TogglableNote";
+import TogglableNote from "@/app/upgrade/TogglableNote";
 
 // Route Segment Config
 // Page, Layout, Route Handlers に設定可能, Component には不可

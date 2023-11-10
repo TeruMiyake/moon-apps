@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40">
+    <Container className="mt-8 sm:mt-16 lg:mt-24">
       <FadeIn>
         <h1 className="mb-4 text-4xl font-bold">戦闘ログ解析</h1>
         <div className="rounded-lg bg-white p-6 shadow-lg">

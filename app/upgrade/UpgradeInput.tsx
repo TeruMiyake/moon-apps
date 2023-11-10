@@ -7,6 +7,8 @@ import { ItemRank, UpgradeResultType } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { Button } from "@/components/Button";
+
 export interface UpgradeInputProps {
   ranks: ItemRank[];
   resultTypes: UpgradeResultType[];
@@ -23,6 +25,7 @@ export default function UpgradeInput({
   const [triedAt, setTriedAt] = useState(new Date());
   // rankId: 1 ~ 7
   const [rankId, setRankId] = useState(1);
+  const [username, setUsername] = useState("");
 
   // Date 型を使いつつもフォームでは日付しか扱わないことにするため、
   // フォーム上では "YYYY-MM-DD" 形式の文字列 triedAtStr として扱う
@@ -73,12 +76,12 @@ export default function UpgradeInput({
   };
 
   return (
-    <div className="mb-6 max-w-xs rounded-lg bg-gray-100 p-6 pl-14">
+    <div className="mb-6 max-w-sm rounded-lg bg-gray-100 p-6 pl-8">
       <form>
         {/* Rank and Original Level */}
         <div className="mb-4 flex space-x-4">
           {/* Rank */}
-          <div className="mr-10">
+          <div className="mr-16">
             <label htmlFor="rankId" className="block text-gray-700">
               装備ランク:
             </label>
@@ -100,9 +103,9 @@ export default function UpgradeInput({
             <label htmlFor="originalLevel" className="block text-gray-700">
               合成
               <u>
-                <b>前</b>
+                <b>前の</b>
               </u>
-              の+値:
+              +値:
             </label>
             <select
               id="originalLevel"
@@ -119,33 +122,49 @@ export default function UpgradeInput({
           </div>
         </div>
 
-        {/* Tried At */}
-        <div className="mb-4">
-          <label htmlFor="triedAt" className="block text-gray-700">
-            合成した日付:
-          </label>
-          <input
-            type="date"
-            id="triedAt"
-            value={triedAtStr}
-            onChange={handleChangeDate}
-            className="rounded bg-blue-200 p-2"
-          />
+        {/* 合成者と合成日 */}
+        <div className="mb-2 flex space-x-4">
+          <div className="mb-2 mr-4">
+            <label htmlFor="triedAt" className="block text-gray-700">
+              合成者 (匿名可):
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-28 rounded bg-blue-200 p-1 text-sm"
+            />
+          </div>
+
+          {/* Tried At */}
+          <div className="mb-4">
+            <label htmlFor="triedAt" className="block text-gray-700">
+              合成した日付:
+            </label>
+            <input
+              type="date"
+              id="triedAt"
+              value={triedAtStr}
+              onChange={handleChangeDate}
+              className="w-28 rounded bg-blue-200 p-1 text-sm"
+            />
+          </div>
         </div>
 
         {/* 結果選択＆登録ボタン */}
         <div className="mt-5 flex flex-wrap">
           {resultTypes.map((type) => (
-            <button
+            <Button
               key={type.id}
               type="button"
               onClick={() => {
                 handleSubmit(type.id);
               }}
-              className="m-2 w-1/3 rounded bg-blue-400 p-3 text-white"
+              className="m-2 flex w-2/5 items-center justify-center"
             >
               {type.name}
-            </button>
+            </Button>
           ))}
         </div>
       </form>

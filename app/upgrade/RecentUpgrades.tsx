@@ -70,6 +70,7 @@ export default async function RecentUpgrades() {
               <th className="border-b px-4 py-2">ランク</th>
               <th className="border-b px-4 py-2">合成前</th>
               <th className="border-b px-4 py-2">結果</th>
+              <th className="border-b px-4 py-2">合成者</th>
               <th className="border-b px-4 py-2">操作</th>
             </tr>
           </thead>
@@ -90,6 +91,7 @@ export default async function RecentUpgrades() {
                 <td className="border-b px-4 py-2">
                   {upgrade.resultType.name}
                 </td>
+                <td className="border-b px-4 py-2">{upgrade.userName}</td>
                 <td className="border-b px-4 py-2">
                   <UpgradeDeleteButton id={upgrade.id} />
                 </td>
@@ -100,29 +102,29 @@ export default async function RecentUpgrades() {
       </div>
 
       {/* スマホと小さめのタブレット用 */}
-      <div className="flex flex-col gap-4 md:hidden">
+      <div className="flex flex-col gap-1 md:hidden">
         {upgrades.map((upgrade, index) => (
           <div
             key={upgrade.id}
-            className={`rounded p-4 ${
+            className={`rounded p-2 ${
               index % 2 === 0 ? "bg-gray-100" : "bg-white"
             }`}
           >
-            <div className="mb-2 flex justify-between">
-              <span>
-                登録日時:
-                <br />
-                {toFormattedJTC_YYMMDDHHmm(upgrade.registeredAt)}
-              </span>
-              <span>
-                合成前: {upgrade.rank.name}+{upgrade.originalLevel}
-                <br />
-                結果: {upgrade.resultType.name}
-              </span>
-            </div>
-            <div className="mb-2 flex justify-between">
-              <span>合成日: {toFormattedJTC_YYMMDD(upgrade.triedAt)}</span>
-              <UpgradeDeleteButton id={upgrade.id} />
+            <div className="ml-2 mr-4 flex items-center justify-between">
+              <div>
+                <span className="font-bold">
+                  {upgrade.rank.name}+{upgrade.originalLevel} → {" "}
+                  {upgrade.resultType.name} &nbsp;&nbsp; by {upgrade.userName}
+                </span><br />
+                <span>
+                  登録日時: 
+                  {toFormattedJTC_YYMMDDHHmm(upgrade.registeredAt)}
+                </span><br />
+                <span>合成日: {toFormattedJTC_YYMMDD(upgrade.triedAt)}</span>
+              </div>
+              <div>
+                <UpgradeDeleteButton id={upgrade.id} />
+              </div>
             </div>
           </div>
         ))}

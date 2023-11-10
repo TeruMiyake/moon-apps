@@ -8,6 +8,7 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 // ========= アイテム関連 ====================================
@@ -61,4 +62,5 @@ model Upgrade {
   rankId        Int
   resultType    UpgradeResultType @relation(fields: [resultTypeId], references: [id])
   resultTypeId  Int
+  userName      String // 合成したユーザー名（空白での登録可）
 }

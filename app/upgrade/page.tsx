@@ -29,7 +29,7 @@ export default async function Home() {
   await prisma.$disconnect();
 
   return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40">
+    <Container className="mt-8 sm:mt-16 lg:mt-24">
       <FadeIn>
         <h1 className="mb-4 text-4xl font-bold">合成結果入力フォーム</h1>
         {/* 注意書き */}

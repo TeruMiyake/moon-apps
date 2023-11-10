@@ -3,6 +3,7 @@
  *
  * GET: 合成結果の統計情報を取得。返り値は UpgradeStatsPerRank[]。0回の組み合わせはデータに含まれないので例外処理に注意。
  */
+import { type NextRequest } from "next/server";
 
 import {
   PrismaClient,
@@ -39,8 +40,22 @@ type UpgradeStatsPerRank = {
   }[];
 };
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   console.log(`GET /api/upgrades/stats called. req: ${req}`);
+
+  // Request オブジェクトから URL クエリパラメータを取得
+  const searchParams = req.nextUrl.searchParams;
+  const fromDateStr = searchParams.get('from');
+
+  // 'from' パラメータが存在し、有効な日付であれば、それを使用
+  let fromDate: Date | undefined = undefined;
+  if (fromDateStr) {
+    fromDate = new Date(fromDateStr);
+    if (isNaN(fromDate.getTime())) {
+      // 有効な日付でなければ undefined に設定
+      fromDate = undefined;
+    }
+  }
 
   // 事前に dict[resyltTypeid] = resultTypeName の辞書を作成しておく
   let updgradeResultTypeNameDict: { [key: number]: string } = {};
@@ -71,6 +86,7 @@ export async function GET(req: Request) {
   // データ取得及び集計処理
   try {
     const upgrades: IncludedUpgrade[] = await prisma.upgrade.findMany({
+      where: fromDate ? { triedAt: { gte: fromDate } } : undefined,
       include: {
         rank: true,
         resultType: true,

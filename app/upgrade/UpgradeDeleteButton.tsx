@@ -48,7 +48,7 @@ export default function UpgradeDeleteButton({ id }: UpgradeDeleteButtonProps) {
   return (
     <>
       <button
-        className="rounded bg-red-500 px-4 py-2 text-white"
+        className="rounded bg-red-500 px-3 py-2 text-white"
         onClick={() => setShowAlert(true)}
       >
         削除

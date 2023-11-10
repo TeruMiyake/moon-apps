@@ -25,7 +25,7 @@ export default function UpgradeInput({
   const [triedAt, setTriedAt] = useState(new Date());
   // rankId: 1 ~ 7
   const [rankId, setRankId] = useState(1);
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
 
   // Date 型を使いつつもフォームでは日付しか扱わないことにするため、
   // フォーム上では "YYYY-MM-DD" 形式の文字列 triedAtStr として扱う
@@ -40,6 +40,7 @@ export default function UpgradeInput({
       triedAt,
       rankId,
       resultTypeId,
+      userName,
     };
 
     try {
@@ -130,9 +131,9 @@ export default function UpgradeInput({
             </label>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="userName"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               className="w-28 rounded bg-blue-200 p-1 text-sm"
             />
           </div>

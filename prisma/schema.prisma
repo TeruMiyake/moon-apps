@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -33,12 +33,20 @@ model ItemType {
 
 // アイテム（実際の所持アイテムではなく、システム上のアイテム種類を表す）
 model Item {
-  id     Int      @id @default(autoincrement())
-  name   String
-  rank   ItemRank @relation(fields: [rankId], references: [id])
-  rankId Int
-  type   ItemType @relation(fields: [typeId], references: [id])
-  typeId Int
+  id           Int          @id @default(autoincrement())
+  name         String
+  rank         ItemRank     @relation(fields: [rankId], references: [id])
+  rankId       Int
+  type         ItemType     @relation(fields: [typeId], references: [id])
+  typeId       Int
+  itemNeeds1 ItemNeed[] @relation("itemNeed1")
+  ItemNeeds2 ItemNeed[] @relation("itemNeed2")
+  ItemNeeds3 ItemNeed[] @relation("itemNeed3")
+  ItemNeeds4 ItemNeed[] @relation("itemNeed4")
+  ItemNeeds5 ItemNeed[] @relation("itemNeed5")
+  ItemNeeds6 ItemNeed[] @relation("itemNeed6")
+  ItemNeeds7 ItemNeed[] @relation("itemNeed7")
+  ItemNeeds8 ItemNeed[] @relation("itemNeed8")
 }
 
 // アイテム合成結果の種類
@@ -63,4 +71,42 @@ model Upgrade {
   resultType    UpgradeResultType @relation(fields: [resultTypeId], references: [id])
   resultTypeId  Int
   userName      String // 合成したユーザー名（空白での登録可）
+}
+
+// ユーザによるアイテム需要
+// 必要とするアイテムを登録できる
+// 登録できるアイテムは 8 個まで
+// 武器1, 2
+// 防具
+// 足具
+// アクセサリー1, 2
+// その他アイテム1, 2
+// 各アイテムには希望する金額を設定できる（デフォルト値は 0）
+model ItemNeed {
+  id         Int    @id @default(autoincrement())
+  userName   String
+  item1      Item?  @relation("itemNeed1", fields: [item1Id], references: [id])
+  item1Id    Int?
+  item1Price Int?   @default(0)
+  item2      Item?  @relation("itemNeed2", fields: [item2Id], references: [id])
+  item2Id    Int?
+  item2Price Int?   @default(0)
+  item3      Item?  @relation("itemNeed3", fields: [item3Id], references: [id])
+  item3Id    Int?
+  item3Price Int?   @default(0)
+  item4      Item?  @relation("itemNeed4", fields: [item4Id], references: [id])
+  item4Id    Int?
+  item4Price Int?   @default(0)
+  item5      Item?  @relation("itemNeed5", fields: [item5Id], references: [id])
+  item5Id    Int?
+  item5Price Int?   @default(0)
+  item6      Item?  @relation("itemNeed6", fields: [item6Id], references: [id])
+  item6Id    Int?
+  item6Price Int?   @default(0)
+  item7      Item?  @relation("itemNeed7", fields: [item7Id], references: [id])
+  item7Id    Int?
+  item7Price Int?   @default(0)
+  item8      Item?  @relation("itemNeed8", fields: [item8Id], references: [id])
+  item8Id    Int?
+  item8Price Int?   @default(0)
 }

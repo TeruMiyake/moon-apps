@@ -33,12 +33,12 @@ model ItemType {
 
 // アイテム（実際の所持アイテムではなく、システム上のアイテム種類を表す）
 model Item {
-  id           Int          @id @default(autoincrement())
-  name         String
-  rank         ItemRank     @relation(fields: [rankId], references: [id])
-  rankId       Int
-  type         ItemType     @relation(fields: [typeId], references: [id])
-  typeId       Int
+  id         Int        @id @default(autoincrement())
+  name       String
+  rank       ItemRank   @relation(fields: [rankId], references: [id])
+  rankId     Int
+  type       ItemType   @relation(fields: [typeId], references: [id])
+  typeId     Int
   itemNeeds1 ItemNeed[] @relation("itemNeed1")
   ItemNeeds2 ItemNeed[] @relation("itemNeed2")
   ItemNeeds3 ItemNeed[] @relation("itemNeed3")
@@ -83,30 +83,46 @@ model Upgrade {
 // その他アイテム1, 2
 // 各アイテムには希望する金額を設定できる（デフォルト値は 0）
 model ItemNeed {
-  id         Int    @id @default(autoincrement())
-  userName   String
-  item1      Item?  @relation("itemNeed1", fields: [item1Id], references: [id])
-  item1Id    Int?
-  item1Price Int?   @default(0)
-  item2      Item?  @relation("itemNeed2", fields: [item2Id], references: [id])
-  item2Id    Int?
-  item2Price Int?   @default(0)
-  item3      Item?  @relation("itemNeed3", fields: [item3Id], references: [id])
-  item3Id    Int?
-  item3Price Int?   @default(0)
-  item4      Item?  @relation("itemNeed4", fields: [item4Id], references: [id])
-  item4Id    Int?
-  item4Price Int?   @default(0)
-  item5      Item?  @relation("itemNeed5", fields: [item5Id], references: [id])
-  item5Id    Int?
-  item5Price Int?   @default(0)
-  item6      Item?  @relation("itemNeed6", fields: [item6Id], references: [id])
-  item6Id    Int?
-  item6Price Int?   @default(0)
-  item7      Item?  @relation("itemNeed7", fields: [item7Id], references: [id])
-  item7Id    Int?
-  item7Price Int?   @default(0)
-  item8      Item?  @relation("itemNeed8", fields: [item8Id], references: [id])
-  item8Id    Int?
-  item8Price Int?   @default(0)
+  id             Int      @id @default(autoincrement())
+  userName       String
+  item1          Item?    @relation("itemNeed1", fields: [item1Id], references: [id])
+  item1Id        Int?
+  item1Price     Int?     @default(0)
+  item1NowBuying Boolean? @default(false) // このアイテムを無限買取中か否か
+  item1Memo      String?  @default("") // 任意のメモ
+  item2          Item?    @relation("itemNeed2", fields: [item2Id], references: [id])
+  item2Id        Int?
+  item2Price     Int?     @default(0)
+  item2NowBuying Boolean? @default(false)
+  item2Memo      String?  @default("")
+  item3          Item?    @relation("itemNeed3", fields: [item3Id], references: [id])
+  item3Id        Int?
+  item3Price     Int?     @default(0)
+  item3NowBuying Boolean? @default(false)
+  item3Memo      String?  @default("")
+  item4          Item?    @relation("itemNeed4", fields: [item4Id], references: [id])
+  item4Id        Int?
+  item4Price     Int?     @default(0)
+  item4NowBuying Boolean? @default(false)
+  item4Memo      String?  @default("")
+  item5          Item?    @relation("itemNeed5", fields: [item5Id], references: [id])
+  item5Id        Int?
+  item5Price     Int?     @default(0)
+  item5NowBuying Boolean? @default(false)
+  item5Memo      String?  @default("")
+  item6          Item?    @relation("itemNeed6", fields: [item6Id], references: [id])
+  item6Id        Int?
+  item6Price     Int?     @default(0)
+  item6NowBuying Boolean? @default(false)
+  item6Memo      String?  @default("")
+  item7          Item?    @relation("itemNeed7", fields: [item7Id], references: [id])
+  item7Id        Int?
+  item7Price     Int?     @default(0)
+  item7NowBuying Boolean? @default(false)
+  item7Memo      String?  @default("")
+  item8          Item?    @relation("itemNeed8", fields: [item8Id], references: [id])
+  item8Id        Int?
+  item8Price     Int?     @default(0)
+  item8NowBuying Boolean? @default(false)
+  item8Memo      String?  @default("")
 }

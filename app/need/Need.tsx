@@ -56,7 +56,6 @@ export default function Need({ itemNeed }: { itemNeed: IncludedItemNeed }) {
   // const [item7Memo, setItem7Memo] = useState(itemNeed.item7Memo);
   // const [item8Memo, setItem8Memo] = useState(itemNeed.item8Memo);
 
-
   // ここで各アイテムの選択状態を管理するstateを設定する
 
   // 更新処理
@@ -74,9 +73,12 @@ export default function Need({ itemNeed }: { itemNeed: IncludedItemNeed }) {
 
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
-  }
+  };
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>, itemName: string) => {
+  const handlePriceChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    itemName: string,
+  ) => {
     const price = parseFloat(e.target.value) || 0;
     setPrices({ ...prices, [itemName]: price });
   };
@@ -86,13 +88,11 @@ export default function Need({ itemNeed }: { itemNeed: IncludedItemNeed }) {
       <div className="mb-3">
         {/* ユーザー名の編集フォーム */}
         <label className="mb-1 block">User Name: </label>
-          <input
-            value={userName || ""}
-            onChange={(e) =>
-              handleUserNameChange(e)
-            }
-            className="border p-1"
-          />
+        <input
+          value={userName || ""}
+          onChange={(e) => handleUserNameChange(e)}
+          className="border p-1"
+        />
         {/* 各アイテムと価格の編集フォーム */}
         {/* 例: */}
         <div className="mb-2">
@@ -101,10 +101,8 @@ export default function Need({ itemNeed }: { itemNeed: IncludedItemNeed }) {
           <label className="mb-1 block">Item 1 Price:</label>
           <input
             type="number"
-            value={prices['item1Price'] || ""}
-            onChange={(e) =>
-              handlePriceChange(e, "item1Price")
-            }
+            value={prices["item1Price"] || ""}
+            onChange={(e) => handlePriceChange(e, "item1Price")}
             className="border p-1"
           />
         </div>
@@ -113,10 +111,8 @@ export default function Need({ itemNeed }: { itemNeed: IncludedItemNeed }) {
           <label className="mb-1 block">Item 2 Price:</label>
           <input
             type="number"
-            value={prices['item2Price'] || ""}
-            onChange={(e) =>
-              handlePriceChange(e, "item2Price")
-            }
+            value={prices["item2Price"] || ""}
+            onChange={(e) => handlePriceChange(e, "item2Price")}
             className="border p-1"
           />
           {/* ここにドロップダウンリストを追加 */}

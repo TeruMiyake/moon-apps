@@ -66,7 +66,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  console.log(`DELETE /api/item called. req: ${req}`);
+  console.log(`DELETE /api/items called. req: ${req}`);
   try {
     const body = await req.json();
     console.log(`req.json(): ${JSON.stringify(body)}`);

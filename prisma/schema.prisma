@@ -126,3 +126,9 @@ model ItemNeed {
   item8NowBuying Boolean? @default(false)
   item8Memo      String?  @default("")
 }
+
+model Memo {
+  id    Int    @id @default(autoincrement())
+  title String @default("")
+  text  String @default("")
+}

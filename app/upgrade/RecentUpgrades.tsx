@@ -113,13 +113,15 @@ export default async function RecentUpgrades() {
             <div className="ml-2 mr-4 flex items-center justify-between">
               <div>
                 <span className="font-bold">
-                  {upgrade.rank.name}+{upgrade.originalLevel} → {" "}
+                  {upgrade.rank.name}+{upgrade.originalLevel} →{" "}
                   {upgrade.resultType.name} &nbsp;&nbsp; by {upgrade.userName}
-                </span><br />
+                </span>
+                <br />
                 <span>
-                  登録日時: 
+                  登録日時:
                   {toFormattedJTC_YYMMDDHHmm(upgrade.registeredAt)}
-                </span><br />
+                </span>
+                <br />
                 <span>合成日: {toFormattedJTC_YYMMDD(upgrade.triedAt)}</span>
               </div>
               <div>

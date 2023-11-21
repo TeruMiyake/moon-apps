@@ -1,0 +1,47 @@
+-- CreateTable
+CREATE TABLE `ItemNeed` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `userName` VARCHAR(191) NOT NULL,
+    `item1Id` INTEGER NULL,
+    `item1Price` INTEGER NULL DEFAULT 0,
+    `item2Id` INTEGER NULL,
+    `item2Price` INTEGER NULL DEFAULT 0,
+    `item3Id` INTEGER NULL,
+    `item3Price` INTEGER NULL DEFAULT 0,
+    `item4Id` INTEGER NULL,
+    `item4Price` INTEGER NULL DEFAULT 0,
+    `item5Id` INTEGER NULL,
+    `item5Price` INTEGER NULL DEFAULT 0,
+    `item6Id` INTEGER NULL,
+    `item6Price` INTEGER NULL DEFAULT 0,
+    `item7Id` INTEGER NULL,
+    `item7Price` INTEGER NULL DEFAULT 0,
+    `item8Id` INTEGER NULL,
+    `item8Price` INTEGER NULL DEFAULT 0,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item1Id_fkey` FOREIGN KEY (`item1Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item2Id_fkey` FOREIGN KEY (`item2Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item3Id_fkey` FOREIGN KEY (`item3Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item4Id_fkey` FOREIGN KEY (`item4Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item5Id_fkey` FOREIGN KEY (`item5Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item6Id_fkey` FOREIGN KEY (`item6Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item7Id_fkey` FOREIGN KEY (`item7Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `ItemNeed` ADD CONSTRAINT `ItemNeed_item8Id_fkey` FOREIGN KEY (`item8Id`) REFERENCES `Item`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

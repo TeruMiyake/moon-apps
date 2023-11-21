@@ -9,7 +9,7 @@ import {
   ItemNeed,
 } from "@prisma/client";
 
-import Need from "@/app/needs/Need";
+import Need from "@/app/need/Need";
 
 const prisma = new PrismaClient();
 

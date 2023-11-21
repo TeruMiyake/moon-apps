@@ -8,7 +8,7 @@ import React, { useState } from "react";
 
 // import { Button } from "@/components/Button";
 
-import { IncludedItemNeed } from "@/app/needs/NeedList";
+import { IncludedItemNeed } from "@/app/need/NeedList";
 
 export default function Need({ itemNeed }: { itemNeed: IncludedItemNeed }) {
   // State for editing fields

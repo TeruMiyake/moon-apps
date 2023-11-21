@@ -10,6 +10,7 @@ const navigation = [
     title: "アイテム関連",
     links: [
       { title: "合成結果入力", href: "/upgrade" },
+      { title: "欲しいアイテム集", href: "/need" },
       { title: "アイテム登録", href: "/item" },
       // {
       //   title: (

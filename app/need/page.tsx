@@ -20,6 +20,7 @@ export default async function Home() {
       <FadeIn>
         <h1 className="mb-4 text-4xl font-bold">みんなの欲しいアイテム集</h1>
         {/* 注意書き */}
+        <h2>ごめんなさい、まだ使えません…… 😿</h2>
       </FadeIn>
 
       <FadeInStagger className="mt-10" faster>

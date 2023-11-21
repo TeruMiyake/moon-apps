@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <Container className="mt-8 sm:mt-16 lg:mt-24">
       <FadeIn>
-        <h1 className="mb-4 text-4xl font-bold">みんなの欲しいアイテム</h1>
+        <h1 className="mb-4 text-4xl font-bold">みんなの欲しいアイテム集</h1>
         {/* 注意書き */}
       </FadeIn>
 

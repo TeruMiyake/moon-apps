@@ -148,11 +148,11 @@ function Navigation() {
         <NavigationItem href="/upgrade">合成結果入力</NavigationItem>
         <NavigationItem href="/battle">戦闘ログ解析</NavigationItem>
       </NavigationRow>
-      {/* <NavigationRow>
-        <NavigationItem href="/work">Our Work</NavigationItem>
-        <NavigationItem href="/about">About Us</NavigationItem>
-      </NavigationRow>
       <NavigationRow>
+        <NavigationItem href="/need">欲しいアイテム集</NavigationItem>
+        <NavigationItem href="/item">アイテム登録</NavigationItem>
+      </NavigationRow>
+      {/* <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
         <NavigationItem href="/blog">Blog</NavigationItem>
       </NavigationRow> */}

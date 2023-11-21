@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
 
   // Request オブジェクトから URL クエリパラメータを取得
   const searchParams = req.nextUrl.searchParams;
-  const fromDateStr = searchParams.get('from');
+  const fromDateStr = searchParams.get("from");
 
   // 'from' パラメータが存在し、有効な日付であれば、それを使用
   let fromDate: Date | undefined = undefined;

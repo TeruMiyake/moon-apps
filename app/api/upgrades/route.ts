@@ -26,7 +26,7 @@ export type IncludedUpgrade = Upgrade & {
 };
 
 export async function GET(req: Request) {
-  console.log(`GET /api/upgrade called. req: ${req}`);
+  console.log(`GET /api/upgrades called. req: ${req}`);
   try {
     const upgrades: IncludedUpgrade[] = await prisma.upgrade.findMany(
       // 登録された日時が新しい順に 50 件まで取得
@@ -58,7 +58,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  console.log(`POST /api/upgrade called. req: ${req}`);
+  console.log(`POST /api/upgrades called. req: ${req}`);
   try {
     const body = await req.json();
     console.log(`req.json(): ${JSON.stringify(body)}`);

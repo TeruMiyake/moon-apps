@@ -38,8 +38,12 @@ export default async function MemoList() {
                 key={memo.id}
                 className={index % 2 === 0 ? "bg-gray-100" : ""}
               >
-                <td className="whitespace-pre-wrap border-b px-4 py-2 text-center">{memo.title}</td>
-                <td className="whitespace-pre-wrap border-b px-4 py-2 text-left">{memo.text}</td>
+                <td className="whitespace-pre-wrap border-b px-4 py-2 text-center">
+                  {memo.title}
+                </td>
+                <td className="whitespace-pre-wrap border-b px-4 py-2 text-left">
+                  {memo.text}
+                </td>
                 <td className="border-b px-4 py-2">
                   <MemoDeleteButton id={memo.id} />
                 </td>

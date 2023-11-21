@@ -89,7 +89,7 @@ export default function MemoInput() {
               onClick={() => {
                 handleSubmit();
               }}
-              className="memos-center m-2 mb-4 flex w-2/5 justify-center"
+              className="m-2 mb-4 flex w-2/5 items-center justify-center"
             >
               登録
             </Button>
@@ -140,7 +140,7 @@ export default function MemoInput() {
               onClick={() => {
                 handleSubmit();
               }}
-              className="memos-center m-2 flex w-2/5 justify-center"
+              className="m-2 flex w-2/5 items-center justify-center"
             >
               登録
             </Button>

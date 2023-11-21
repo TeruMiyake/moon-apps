@@ -150,12 +150,11 @@ function Navigation() {
       </NavigationRow>
       <NavigationRow>
         <NavigationItem href="/need">欲しいアイテム集</NavigationItem>
+        <NavigationItem href="/memo">みんなのメモ帳</NavigationItem>
+      </NavigationRow>
+      <NavigationRow>
         <NavigationItem href="/item">アイテム登録</NavigationItem>
       </NavigationRow>
-      {/* <NavigationRow>
-        <NavigationItem href="/process">Our Process</NavigationItem>
-        <NavigationItem href="/blog">Blog</NavigationItem>
-      </NavigationRow> */}
     </nav>
   );
 }

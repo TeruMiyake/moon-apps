@@ -25,10 +25,10 @@ const navigation = [
     title: "戦闘関連",
     links: [{ title: "戦闘ログ解析", href: "/battle" }],
   },
-  // {
-  //   title: "Connect",
-  //   links: socialMediaProfiles,
-  // },
+  {
+    title: "コミュニケーション",
+    links: [{ title: "みんなのメモ帳", href: "/memo" }],
+  },
 ];
 
 function Navigation() {

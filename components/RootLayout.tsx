@@ -17,7 +17,7 @@ import { Button } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Footer } from "@/components/Footer";
 import { GridPattern } from "@/components/GridPattern";
-// import { Logo, Logomark } from "@/components/Logo";
+import { Logo, Logomark } from "@/components/Logo";
 // import { Offices } from "@/components/Offices";
 // import { SocialMedia } from "@/components/SocialMedia";
 
@@ -58,8 +58,8 @@ function Header({
   toggleRef: React.RefObject<HTMLButtonElement>;
   invert?: boolean;
 }) {
-  // const { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!;
-  const { setLogoHovered } = useContext(RootLayoutContext)!;
+  const { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!;
+  // const { setLogoHovered } = useContext(RootLayoutContext)!;
 
   return (
     <Container>
@@ -70,7 +70,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          {/* <Logomark
+          <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
@@ -79,8 +79,8 @@ function Header({
             className="hidden h-8 sm:block"
             invert={invert}
             filled={logoHovered}
-          /> */}
-          <p>しろい月の国 工作室</p>
+          />
+          {/* <p>しろい月の国 工作室</p> */}
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="https://games-alchemist.com/" invert={invert}>

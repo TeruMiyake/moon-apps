@@ -5,9 +5,11 @@
 
 import { ItemRank, UpgradeResultType } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Button } from "@/components/Button";
+
+import { getCookie, setCookie } from "@/lib/cookie";
 
 export interface UpgradeInputProps {
   ranks: ItemRank[];
@@ -31,6 +33,24 @@ export default function UpgradeInput({
   // フォーム上では "YYYY-MM-DD" 形式の文字列 triedAtStr として扱う
   // 送信時には triedAtStr を Date 型に変換する
   const triedAtStr = triedAt.toISOString().split("T")[0];
+
+  // userName, rankId, originalLevel は cookie に保存しておく
+  useEffect(() => {
+    const userNameCookie = getCookie("userName");
+    if (userNameCookie) {
+      setUserName(userNameCookie);
+    }
+
+    const rankIdCookie = getCookie("rankId");
+    if (rankIdCookie) {
+      setRankId(Number(rankIdCookie));
+    }
+
+    const originalLevelCookie = getCookie("originalLevel");
+    if (originalLevelCookie) {
+      setOriginalLevel(Number(originalLevelCookie));
+    }
+  }, []);
 
   // 合成結果の登録ボタンが押された場合の処理
   // resultTypeId は登録ボタンの種類によって異なる
@@ -89,7 +109,10 @@ export default function UpgradeInput({
             <select
               id="rankId"
               value={rankId}
-              onChange={(e) => setRankId(Number(e.target.value))}
+              onChange={(e) => {
+                setRankId(Number(e.target.value));
+                setCookie("rankId", e.target.value);
+              }}
               className="rounded bg-blue-200 p-2"
             >
               {ranks.map((rank) => (
@@ -111,7 +134,10 @@ export default function UpgradeInput({
             <select
               id="originalLevel"
               value={originalLevel}
-              onChange={(e) => setOriginalLevel(Number(e.target.value))}
+              onChange={(e) => {
+                setOriginalLevel(Number(e.target.value));
+                setCookie("originalLevel", e.target.value);
+              }}
               className="rounded bg-blue-200 p-2"
             >
               {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((level) => (
@@ -133,7 +159,10 @@ export default function UpgradeInput({
               type="text"
               id="userName"
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setCookie("userName", e.target.value);
+              }}
               className="w-28 rounded bg-blue-200 p-1 text-sm"
             />
           </div>
